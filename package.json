@@ -1,0 +1,15 @@
+{
+  "name": "proxy-req-data.taipei",
+  "version": "0.0.1",
+  "description": "Get data of data.taipei for CORS request",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "chialin.shr@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
