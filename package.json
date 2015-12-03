@@ -1,5 +1,5 @@
 {
-  "name": "proxy-req-data.taipei",
+  "name": "freesamael-proxy-req-data.taipei",
   "version": "0.0.1",
   "description": "Get data of data.taipei for CORS request",
   "main": "server.js",
@@ -7,9 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "chialin.shr@gmail.com",
+  "author": "freesamael@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "express-http-proxy": "^0.6.0"
   }
 }

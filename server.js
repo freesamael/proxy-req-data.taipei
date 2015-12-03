@@ -1,34 +1,16 @@
-var express = require('express');
-var app = express();
+var proxy = require('express-http-proxy');
+var app = require('express')();
 
 app.set('port', (process.env.PORT || 3001));
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
 
-app.get('/req', function(req, res, next) {
-  var path = decodeURIComponent(req.query.url);
-  var http = require('http');
-
-  var options = {
-    host: 'data.taipei',
-    path: path,
-    method: 'GET'
-  };
-
-  http.get(options, function(response) {
-   var data = '';
-   response.on('data', function (chunk) {
-     data += chunk;
-   });
-
-   response.on('end', function () {
-     res.send(data);
-   });
-  });
-});
+app.use('/', proxy('data.taipei', {
+  forwardPath: function(req, res) {
+    return require('url').parse(req.url).path;
+  },
+  intercept: function(rsp, data, req, res, callback) {
+       res.set('Access-Control-Allow-Origin', '*');
+       callback(null, data);
+  }
+}));
 
 app.listen(app.get('port'));
